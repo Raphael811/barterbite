@@ -1,4 +1,6 @@
 ## 📁 Project Structure
+
+```text
 barterbite/
 ├── public/
 │   └── index.html
