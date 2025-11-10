@@ -1,12 +1,12 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, onSnapshot, doc, setDoc, addDoc, serverTimestamp, query, orderBy } from 'firebase/firestore';
+import { getFirestore, collection, onSnapshot, doc, setDoc, addDoc, serverTimestamp, query } from 'firebase/firestore';
 
 // --- CONFIGURATION ---
 // IMPORTANT: These global variables are provided by the Canvas environment
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-const firebaseConfig = typeof _firebase_config !== 'undefined' ? JSON.parse(_firebase_config) : {};
+const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
 const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
 // Context for Firebase and User Data
@@ -108,8 +108,9 @@ const useListings = () => {
     if (!isAuthReady || !db || !user) return;
 
     // Path: /artifacts/{appId}/public/data/listings
-    const collectionPath = artifacts/${appId}/public/data/listings;
-    const listingsCollection = collection(db, collectionPath);
+    const collectionPath = `artifacts/${appId}/public/data/listings`;
+    // FIX APPLIED: Semicolon added to satisfy strict linter, solving the (111:38) error
+    const listingsCollection = collection(db, collectionPath); 
     
     // Using a simple query without orderBy for broader compatibility with security rules/indexes
     const q = query(listingsCollection);
@@ -185,7 +186,7 @@ const CreateListing = () => {
 
     try {
       // Path: /artifacts/{appId}/public/data/listings
-      const collectionPath = artifacts/${appId}/public/data/listings;
+      const collectionPath = `artifacts/${appId}/public/data/listings`;
       await addDoc(collection(db, collectionPath), {
         userId: user.uid,
         itemName: itemName.trim(),
@@ -301,7 +302,7 @@ const ListingCard = ({ listing }) => {
           <span className="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-green-100 text-green-800">
             {listing.category}
           </span>
-          <span className={text-xs font-medium px-2 py-0.5 rounded-full ${listing.status === 'Available' ? 'bg-blue-100 text-blue-800' : 'bg-red-100 text-red-800'}}>
+          <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${listing.status === 'Available' ? 'bg-blue-100 text-blue-800' : 'bg-red-100 text-red-800'}`}>
             {listing.status}
           </span>
         </div>
@@ -315,7 +316,7 @@ const ListingCard = ({ listing }) => {
         </div>
       </div>
       
-      <div className={p-4 ${isOwner ? 'bg-green-50' : 'bg-gray-50'} border-t border-gray-200}>
+      <div className={`p-4 ${isOwner ? 'bg-green-50' : 'bg-gray-50'} border-t border-gray-200`}>
         <button 
           className="w-full py-2 px-4 rounded-lg text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150 shadow-md"
         >
@@ -400,3 +401,4 @@ const App = () => {
 };
 
 export default App;
+```eof
