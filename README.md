@@ -1,9 +1,11 @@
-+---package.json
-+---postcss.config.js
-+---public
-| \---index.html
-+---src
-|   +---App.jsx
-|   +---index.css
-|   \---index.js
-\---tailwind.config.js
+## 📁 Project Structure
+barterbite/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.jsx
+│   ├── index.js
+│   └── index.css
+├── package.json
+├── tailwind.config.js
+└── postcss.config.js
