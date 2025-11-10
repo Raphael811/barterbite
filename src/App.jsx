@@ -276,7 +276,7 @@ const CreateListing = () => {
           </button>
         }
       >
-        <p>Your item *{itemName}* has been successfully listed for trade!</p>
+        <p>Your item **{itemName}** has been successfully listed for trade!</p>
       </Modal>
     </div>
   );
