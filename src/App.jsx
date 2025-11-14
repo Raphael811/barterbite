@@ -127,13 +127,12 @@ const nigerianLocations = {
       name: "Other States",
       cities: ["Select your city..."]
     }
-  ]
-};
+  ];
+
 
 // --- MULTI-LANGUAGE SYSTEM ---
 const translations = {
   en: {
-    // Navigation & Auth
     appName: "BarterBite",
     userID: "User ID",
     demoMode: "Demo Mode",
@@ -150,7 +149,10 @@ const translations = {
     continueWithGoogle: "Continue with Google",
     or: "or",
     dontHaveAccount: "Don't have an account?",
-    alreadyHaveAccount: "Already have an account?",
+    alreadyHaveAccount: "Already have an account?"
+  }
+};
+
     
     // Main Headers
     marketFeed: "BarterBite Marketplace",
